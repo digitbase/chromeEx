@@ -12,11 +12,34 @@
         "default_icon": "icon.png",
         "default_popup": "popup.html"
     },
+    "background": {
+        "scripts": ["js/jquery-2.1.0.min.js", "js/background.js"]
+    },
     "content_scripts": [{
         "matches": ["<all_urls>"],
-        "js": ["content-script.js"]
+        "js": ["js/jquery-2.1.0.min.js", "content-script.js"]
+        //"js": ["content-script.js"]
     }],
     "web_accessible_resources": [
         "inject.js"
+    ],
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+C",
+                "mac": "MacCtrl+Shift+C"
+            },
+            "description": "Opens hello.html"
+        }
+    },
+    "permissions": [
+        "contextMenus", // 右键菜单
+        "tabs", // 标签
+        "notifications", // 通知
+        "webRequest", // web请求
+        "webRequestBlocking", // 阻塞式web请求
+        "storage", // 插件本地存储
+        "http://*/*", // 可以通过executeScript或者insertCSS访问的网站
+        "https://*/*" // 可以通过executeScript或者insertCSS访问的网站
     ]
 }
